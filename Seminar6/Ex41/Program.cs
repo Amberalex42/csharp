@@ -16,8 +16,7 @@ int calcPositive(int[] array)
     {
         if (array[i] > 0) total++;
     }
-    //return total;
-    return 5;
+    return total;
 }
 
 Console.WriteLine("Сколько чисел будете вводить?");
