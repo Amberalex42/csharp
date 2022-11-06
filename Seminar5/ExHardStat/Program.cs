@@ -30,7 +30,7 @@ double getMed(int[] array)
     sortArray(array);
     double result;
     if (array.Length % 2 == 1) result = array[array.Length / 2];
-    else result = (array[array.Length / 2] + array[array.Length / 2 - 1]) / 2;
+    else result = Convert.ToDouble(array[array.Length / 2] + array[array.Length / 2 - 1]) / 2;
     return result;
 }
 
@@ -39,19 +39,22 @@ double[] getInfo(int[] array)
 
     int maxIndex = 0;
     int minIndex = 0;
-    int total = array[0];
-    for (int i = 1; i < array.Length; i++)
+    double total = 0;
+    for (int i = 0; i < array.Length; i++)
     {
         if (array[i] > array[maxIndex]) maxIndex = i;
         if (array[i] < array[minIndex]) minIndex = i;
         total += array[i];
     }
-    double[] result = { array[maxIndex], maxIndex, array[minIndex], minIndex, total / array.Length};
+    double avg = Math.Round(total / array.Length, 2);
+    double[] result = {array[maxIndex], maxIndex, array[minIndex], minIndex, avg, getMed(array)};
     return result;
 }
 
 int[] a = FillArray(10);
 printArray(a);
-sortArray(a);
-printArray(a);
-Console.WriteLine(getMed(a));
+double[] info = getInfo(a);
+Console.WriteLine($"Максимальное значение: {info[0]}, индекс максимального значения : {info[1]}.");
+Console.WriteLine($"Минимальное значение: {info[2]}, индекс минимального значения: {info[3]}.");
+Console.WriteLine($"Среднее значение: {info[4]}.");
+Console.WriteLine($"Медианное значение: {info[5]}.");
